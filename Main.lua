@@ -1,6 +1,3 @@
--- ==========================================
--- MOONVEIL HUB - SOURCE CODE (TARUH DI GITHUB)
--- ==========================================
 local cg = game:GetService("CoreGui")
 local ts = game:GetService("TweenService")
 local uis = game:GetService("UserInputService")
@@ -8,7 +5,6 @@ local rs = game:GetService("RunService")
 local players = game:GetService("Players")
 local lp = players.LocalPlayer
 
--- Bersihkan GUI lama jika ada
 for _, v in pairs(cg:GetChildren()) do
     if v.Name == "MoonveilUI" then v:Destroy() end
 end
@@ -18,7 +14,7 @@ sg.Name = "MoonveilUI"
 sg.Parent = cg
 sg.ResetOnSpawn = false
 
--- Asset ID Logo Lu
+-- Asset ID Logo
 local myLogoID = "134665675914525" 
 local logoUrl = "rbxthumb://type=Asset&id=" .. myLogoID .. "&w=150&h=150"
 
@@ -106,7 +102,7 @@ closeBtn.BackgroundTransparency = 1
 closeBtn.Position = UDim2.new(0, 10, 1, -35)
 closeBtn.Size = UDim2.new(1, -20, 0, 25)
 closeBtn.Font = Enum.Font.GothamBold
-closeBtn.Text = "Tutup UI"
+closeBtn.Text = "Close UI"
 closeBtn.TextColor3 = Color3.fromRGB(150, 150, 150)
 closeBtn.TextSize = 12
 closeBtn.MouseButton1Click:Connect(function()
@@ -215,60 +211,23 @@ local function CreateTab(name, iconId, isDef)
         end)
     end
     
-    function els:Label(txt)
-        local l = Instance.new("TextLabel")
-        l.Parent = pScroll; l.BackgroundTransparency = 1; l.Size = UDim2.new(1, -10, 0, 20)
-        l.Font = Enum.Font.GothamBold; l.Text = txt; l.TextColor3 = Color3.fromRGB(128, 0, 255); l.TextSize = 12; l.TextXAlignment = Enum.TextXAlignment.Left
-    end
-    
     return els
 end
 
 -- ==========================================
--- BAGIAN LOGIKA & TOGGLE (DIBAWAH SINI)
+-- TABS & TOGGLES
 -- ==========================================
 
--- Variabel Status
-local godModeActive = false
-local speedHackActive = false
+local tabGeneral = CreateTab("General", "rbxassetid://7733658504", true)
+-- Isi tab General nanti disini
 
--- Fungsi Hantu Nembus (Contoh Map Horror Kemaren)
-local antiTouchLoop
-local function toggleGodMode(state)
-    godModeActive = state
-    if state then
-        antiTouchLoop = rs.Heartbeat:Connect(function()
-            local char = lp.Character
-            if char then
-                for _, part in pairs(char:GetDescendants()) do
-                    if part:IsA("TouchTransmitter") then part:Destroy() end
-                end
-            end
-        end)
-    else
-        if antiTouchLoop then antiTouchLoop:Disconnect(); antiTouchLoop = nil end
-    end
-end
+local tabMisc = CreateTab("Misc", "rbxassetid://7734068321", false)
 
--- Bikin Menu di UI
-local tab1 = CreateTab("Pemain", "rbxassetid://7733658504", true)
-tab1:Label("Kemampuan Super")
+-- IMPORT MODULE NOCLIP DARI GITHUB
+-- JANGAN LUPA GANTI "USERNAME_GITHUB_LU" SAMA USERNAME ASLI LU!
+local noclipModuleURL = "https://raw.githubusercontent.com/Gaeuly/Moonveil-Hub/main/misc/noclip.lua"
+local toggleNoclip = loadstring(game:HttpGet(noclipModuleURL))()
 
-tab1:Toggle("God Mode (Hantu Nembus)", function(state) 
-    toggleGodMode(state) 
-end)
-
-tab1:Toggle("Lari Kencang", function(state)
-    speedHackActive = state
-    if state and lp.Character and lp.Character:FindFirstChild("Humanoid") then
-        lp.Character.Humanoid.WalkSpeed = 50
-    elseif not state and lp.Character and lp.Character:FindFirstChild("Humanoid") then
-        lp.Character.Humanoid.WalkSpeed = 16
-    end
-end)
-
-local tab2 = CreateTab("Visual", "rbxassetid://7734068321", false)
-tab2:Label("Setting Penglihatan")
-tab2:Toggle("Tembus Tembok (Noclip)", function(state) 
-    -- Isi kode noclip disini
+tabMisc:Toggle("Noclip", function(state) 
+    toggleNoclip(state)
 end)
