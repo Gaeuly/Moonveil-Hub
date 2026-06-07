@@ -235,7 +235,7 @@ local function CreateTab(name, iconId, isDef)
         for _, v in ipairs(opts) do
             local ob = Instance.new("TextButton")
             ob.Parent = sf; ob.BackgroundTransparency = 1; ob.Size = UDim2.new(1, 0, 0, 30)
-            ob.Font = Enum.Font.Gotham; ob.Text = v; ob.TextColor3 = Color3.fromRGB(150, 150, 150); ob.TextSize = 12
+            ob.Font = Enum.Font.Gotham; ob.Text = "  " .. v; ob.TextColor3 = Color3.fromRGB(150, 150, 150); ob.TextSize = 12; ob.TextXAlignment = Enum.TextXAlignment.Left
             ob.MouseButton1Click:Connect(function()
                 opn = false
                 ts:Create(f, TweenInfo.new(0.2), {Size = UDim2.new(1, -10, 0, 40)}):Play()
@@ -244,6 +244,21 @@ local function CreateTab(name, iconId, isDef)
                 cb(v)
             end)
         end
+    end
+    
+    function els:Button(txt, cb)
+        local b = Instance.new("TextButton")
+        b.Parent = ps; b.BackgroundColor3 = Color3.fromRGB(20, 20, 20); b.Size = UDim2.new(1, -10, 0, 40)
+        b.Font = Enum.Font.GothamSemibold; b.Text = txt; b.TextColor3 = Color3.new(0.9,0.9,0.9); b.TextSize = 13
+        Instance.new("UICorner", b).CornerRadius = UDim.new(0, 6)
+        b.MouseButton1Click:Connect(function()
+            local eff = Instance.new("Frame", b)
+            eff.BackgroundColor3 = Color3.new(1,1,1); eff.BackgroundTransparency = 0.8; eff.Size = UDim2.new(1,0,1,0)
+            Instance.new("UICorner", eff).CornerRadius = UDim.new(0, 6)
+            ts:Create(eff, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+            game.Debris:AddItem(eff, 0.3)
+            cb()
+        end)
     end
 
     return els
@@ -254,9 +269,11 @@ local t2 = CreateTab("Misc", "rbxassetid://7734068321", false)
 
 local ncMod = "https://raw.githubusercontent.com/Gaeuly/Moonveil-Hub/main/misc/noclip.lua"
 local spMod = "https://raw.githubusercontent.com/Gaeuly/Moonveil-Hub/main/misc/speed.lua"
+local dvMod = "https://raw.githubusercontent.com/Gaeuly/Moonveil-Hub/main/misc/devicespoof.lua"
 
 local togNc = loadstring(game:HttpGet(ncMod))()
 local setSp = loadstring(game:HttpGet(spMod))()
+local setDv = loadstring(game:HttpGet(dvMod))()
 
 t2:Toggle("Noclip", function(s) 
     togNc(s)
@@ -264,4 +281,13 @@ end)
 
 t2:Dropdown("WalkSpeed", {"16 (Default)", "32 (Fast)", "50 (Flash)", "100 (Sonic)"}, function(v)
     setSp(v)
+end)
+
+t2:Dropdown("Device Spoofer", {"Default", "PC", "Mobile", "Console"}, function(v)
+    setDv(v)
+end)
+
+t2:Button("Reset Character (Apply Spoof)", function()
+    local c = game:GetService("Players").LocalPlayer.Character
+    if c then c:BreakJoints() end
 end)
