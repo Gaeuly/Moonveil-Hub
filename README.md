@@ -1,4 +1,4 @@
 # Moonveil-Hub
 ```
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Gaeuly/Moonveil-Hub/refs/heads/main/Main.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Gaeuly/Moonveil-HUB/main/main.lua"))()
 ```
