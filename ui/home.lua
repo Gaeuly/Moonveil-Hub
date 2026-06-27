@@ -1,5 +1,5 @@
 -- // ui/home.lua
--- // Mengatur Logika UI Elements & Tab "Main"
+-- // Manages UI Elements Logic & Tabs
 
 return function(Moonveil)
     local Create = Moonveil.Create
@@ -339,16 +339,28 @@ return function(Moonveil)
         return PageObj
     end
 
-    -- // MENGISI KONTEN HOME (KOSONG SIAP UNTUK DIISI NANTI)
+    -- // POPULATE HOME CONTENT (CURRENTLY EMPTY, READY FOR LATER)
     local MainTab = Moonveil.CreatedTabs.Main
     
-    -- Membuat Page (Biar layarnya nggak kosong total, tapi isinya nggak ada)
+    -- Create Pages (So the screen isn't completely blank, but there is no content yet)
     local M_Page1 = MainTab:CreatePage("Page 1")
     local M_Page2 = MainTab:CreatePage("Page 2")
 
-    -- NOTE: Untuk sekarang kosong.
-    -- Nanti kalau lu mau tambah elemen (misal tambah tombol di M_Page1), lu tinggal tambahin:
+    -- NOTE: Empty for now.
+    -- Later, if you want to add elements (e.g., adding a button to M_Page1), you can just add:
     -- local TestSection = M_Page1:CreateSection("Test")
-    -- TestSection:AddButton("Klik Gua", function() print("Mantap") end)
+    -- TestSection:AddButton("Click Me", function() print("Awesome") end)
+    
+    -- // SETUP SETTINGS TAB CONTENT
+    local SettingsTab = Moonveil.CreatedTabs.Settings
+    local S_Page1 = SettingsTab:CreatePage("Settings")
+    local DisplayCard = S_Page1:CreateSection("Display Settings")
+
+    DisplayCard:AddDropdown("UI Size", {"PC", "Mobile", "Small"}, false, function(value)
+        Moonveil:SetUISize(value)
+    end, {
+        Title = "UI Scaler",
+        Description = "Select the UI size to fit your screen."
+    })
     
 end

@@ -380,10 +380,15 @@ end)
 -- // Loading External Modules (Modular Architecture)
 local function LoadModule(path)
     local success, result = pcall(function() return loadstring(game:HttpGetAsync(RepoURL .. path))() end)
-    if success and type(result) == "function" then result(Moonveil) else warn("Moonveil-HUB | Gagal memuat module: " .. path .. " | Error: " .. tostring(result)) end
+    if success and type(result) == "function" then 
+        result(Moonveil) 
+    else 
+        warn("Moonveil-HUB | Failed to load module: " .. path .. " | Error: " .. tostring(result)) 
+    end
 end
 
 LoadModule("ui/sidebar.lua")
+LoadModule("src/setting/uisize.lua")
 LoadModule("ui/home.lua")
 LoadModule("src/setting/transparency.lua")
 LoadModule("src/setting/config.lua")
