@@ -1,48 +1,17 @@
 -- // src/execute/Free-Gamepass.lua
--- // UI dan Logika Eksekusi untuk Free Gamepass
+-- // UI and Execution Logic for Free Gamepass
 
 return function(Moonveil)
-    -- Ambil wadah halaman yang udah dibuat di execute.lua
+    -- Get the page container created in execute.lua
     local Page = Moonveil.ExecutePage
     if not Page then return end
 
     local GamepassSection = Page:CreateSection("Free Gamepass")
 
-    -- Setup Default Global Settings biar nggak error kalau belum ada yang di-klik
-    getgenv().Settings = getgenv().Settings or {
-        CopyButton = false,
-        AutoButton = false,
-        AutoInterval = 0.1,
-        InstantPurchase = false,
-        AutoMassPurchase = false,
-        Debug = false,
-    }
-
-    -- Toggles untuk mengubah Settings secara real-time
-    GamepassSection:AddToggle("Copy Button", false, function(state)
-        getgenv().Settings.CopyButton = state
-    end)
-
-    GamepassSection:AddToggle("Auto Button", false, function(state)
-        getgenv().Settings.AutoButton = state
-    end)
-
-    GamepassSection:AddToggle("Instant Purchase", false, function(state)
-        getgenv().Settings.InstantPurchase = state
-    end)
-
-    GamepassSection:AddToggle("Auto Mass Purchase", false, function(state)
-        getgenv().Settings.AutoMassPurchase = state
-    end)
-    
-    GamepassSection:AddToggle("Debug Mode", false, function(state)
-        getgenv().Settings.Debug = state
-    end)
-
-    -- Tombol untuk menjalankan script
+    -- Button to execute the script
     GamepassSection:AddButton("Execute Script", function()
         local success, err = pcall(function()
-            -- Eksekusi langsung script aslinya dari github dev-nya
+            -- Directly execute the original script from the developer's github
             loadstring(game:HttpGet("https://raw.githubusercontent.com/7yd7/FreeGamepass/main/Script.luau"))()
         end)
         
@@ -53,6 +22,6 @@ return function(Moonveil)
         end
     end, {
         Title = "Free Gamepass Info",
-        Description = "Jalankan script Free Gamepass. Lu bisa atur konfigurasinya dari toggle di atas sebelum eksekusi."
+        Description = "Click to execute the Free Gamepass script. It will run with its default configurations."
     })
 end

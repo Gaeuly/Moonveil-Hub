@@ -400,7 +400,8 @@ LoadModule("ui/home/execute.lua")
 LoadModule("ui/home/setting.lua")
 
 -- 4. Load External Scripts
-LoadModule("src/execute/Free-Gamepass.lua") 
+LoadModule("src/execute/Free-Gamepass.lua")
+LoadModule("src/execute/Fake-Purchase.lua")
 
 -- 5. Load other configs
 LoadModule("src/setting/transparency.lua")
