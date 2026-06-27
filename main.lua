@@ -401,6 +401,7 @@ LoadModule("ui/home/setting.lua")
 
 -- 4. Load the Tab Misc
 LoadModule("src/main/misc/Optimize-Fps.lua")
+LoadModule("src/main/misc/Device-Spoofer.lua")
 
 -- 5. Load External Scripts
 LoadModule("src/execute/Free-Gamepass.lua")
