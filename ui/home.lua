@@ -339,39 +339,16 @@ return function(Moonveil)
         return PageObj
     end
 
-    -- // MENGISI KONTEN HOME (IMPLEMENTASI SCRIPT)
+    -- // MENGISI KONTEN HOME (KOSONG SIAP UNTUK DIISI NANTI)
     local MainTab = Moonveil.CreatedTabs.Main
+    
+    -- Membuat Page (Biar layarnya nggak kosong total, tapi isinya nggak ada)
     local M_Page1 = MainTab:CreatePage("Page 1")
     local M_Page2 = MainTab:CreatePage("Page 2")
 
-    local CombatCard = M_Page1:CreateSection("Combat")
-    CombatCard:AddToggle("Aimbot", false, function(state) print("Aimbot:", state) end, {Title = "Aimbot Module", Description = "Automatically aims your weapon at the nearest valid enemy."})
-    CombatCard:AddDropdown("Target Part", {"Head", "Torso", "Left Arm", "Right Arm", "Legs", "HumanoidRootPart"}, false, function(selected) print("Target:", selected) end)
-
-    local MovementCard = M_Page1:CreateSection("Movement")
-    MovementCard:AddSlider("Walk Speed", 16, 150, 16, function(val) print("Speed:", val) end)
-    MovementCard:AddButton("Teleport to Spawn", function() print("Teleported") end)
-
-    local VisualsCard = M_Page1:CreateSection("Visuals")
-    VisualsCard:AddDropdown("ESP Filters", {"Players", "NPCs", "Items", "Vehicles", "Explosives"}, true, function(selected) print("ESP:", unpack(selected)) end)
-    VisualsCard:AddColorPicker("ESP Color", Color3.fromRGB(255, 0, 0), function(color) print("Color:", color) end)
-
-    local MiscCard = M_Page1:CreateSection("Miscellaneous")
-    MiscCard:AddTextbox("Discord Webhook", "Enter link...", function(text) print("Webhook:", text) end)
-
-    local UtilitiesCard = M_Page2:CreateSection("Utilities")
-    UtilitiesCard:AddCopyButton("Copy Example Word", "Example")
-
-    local UICustomCard = M_Page2:CreateSection("UI Customization")
-    UICustomCard:AddColorPicker("Hub Title Color", Color3.fromRGB(255, 255, 255), function(color) Moonveil.Title.TextColor3 = color end)
-
-    local NotifCard = M_Page2:CreateSection("Notifications Tests")
-    NotifCard:AddToggle("Toggle Notification", false, function(state) if state then Moonveil.Notify({Title = "Toggle Fired", Description = "Notification via toggle.", Duration = 3}) end end)
-    NotifCard:AddButton("Button Notification", function() Moonveil.Notify({Title = "Action Executed", Description = "Notification clicked.", Duration = 3}) end)
-
-    local PremiumTab = Moonveil.CreatedTabs.Premium
-    local P_Page1 = PremiumTab:CreatePage("Page 1")
-    local ProCard = P_Page1:CreateSection("Pro Capabilities")
-    ProCard:AddToggle("Premium Override", false, function(state) print("Override:", state) end)
-    ProCard:AddButton("Execute Example Script", function() print("Executing Script...") end)
+    -- NOTE: Untuk sekarang kosong.
+    -- Nanti kalau lu mau tambah elemen (misal tambah tombol di M_Page1), lu tinggal tambahin:
+    -- local TestSection = M_Page1:CreateSection("Test")
+    -- TestSection:AddButton("Klik Gua", function() print("Mantap") end)
+    
 end

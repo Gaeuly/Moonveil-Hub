@@ -110,7 +110,7 @@ return function(Moonveil)
     -- // Instansiasi Hub Tabs
     Moonveil.CreatedTabs = {
         Main = Moonveil:CreateTab("Main", true, false),
-        Settings = Moonveil:CreateTab("Settings", false, false),
-        Premium = Moonveil:CreateTab("Pro Configs", false, true)
+        Settings = Moonveil:CreateTab("Settings", false, false)
+        -- Tab Premium Dihapus Sesuai Request
     }
 end
