@@ -399,10 +399,13 @@ LoadModule("ui/home/main.lua")
 LoadModule("ui/home/execute.lua")
 LoadModule("ui/home/setting.lua")
 
--- 4. Load External Scripts
+-- 4. Load the Tab Misc
+LoadModule("src/main/misc/Optimize-Fps.lua")
+
+-- 5. Load External Scripts
 LoadModule("src/execute/Free-Gamepass.lua")
 LoadModule("src/execute/Fake-Purchase.lua")
 
--- 5. Load other configs
+-- 6. Load other configs
 LoadModule("src/setting/transparency.lua")
 LoadModule("src/setting/config.lua")
