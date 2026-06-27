@@ -1,5 +1,5 @@
 -- // ui/home.lua
--- // Manages UI Elements Logic & Tabs
+-- // Core Logic for UI Elements & Page Builder
 
 return function(Moonveil)
     local Create = Moonveil.Create
@@ -69,7 +69,7 @@ return function(Moonveil)
             Create("UIPadding", {Parent = ItemContainer, PaddingBottom = UDim.new(0, 10), PaddingTop = UDim.new(0, 5)})
             Create("UIListLayout", {Parent = ItemContainer, SortOrder = Enum.SortOrder.LayoutOrder, Padding = UDim.new(0, 8)})
 
-            local Elements = { ItemContainer = ItemContainer } -- Expose for config.lua
+            local Elements = { ItemContainer = ItemContainer } 
 
             function Elements:AddCopyButton(name, copyText, infoData)
                 local BtnFrame = Create("Frame", {Parent = ItemContainer, BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 30)})
@@ -338,29 +338,4 @@ return function(Moonveil)
         end
         return PageObj
     end
-
-    -- // POPULATE HOME CONTENT (CURRENTLY EMPTY, READY FOR LATER)
-    local MainTab = Moonveil.CreatedTabs.Main
-    
-    -- Create Pages (So the screen isn't completely blank, but there is no content yet)
-    local M_Page1 = MainTab:CreatePage("Page 1")
-    local M_Page2 = MainTab:CreatePage("Page 2")
-
-    -- NOTE: Empty for now.
-    -- Later, if you want to add elements (e.g., adding a button to M_Page1), you can just add:
-    -- local TestSection = M_Page1:CreateSection("Test")
-    -- TestSection:AddButton("Click Me", function() print("Awesome") end)
-    
-    -- // SETUP SETTINGS TAB CONTENT
-    local SettingsTab = Moonveil.CreatedTabs.Settings
-    local S_Page1 = SettingsTab:CreatePage("Settings")
-    local DisplayCard = S_Page1:CreateSection("Display Settings")
-
-    DisplayCard:AddDropdown("UI Size", {"PC", "Mobile", "Small"}, false, function(value)
-        Moonveil:SetUISize(value)
-    end, {
-        Title = "UI Scaler",
-        Description = "Select the UI size to fit your screen."
-    })
-    
 end

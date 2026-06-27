@@ -387,8 +387,17 @@ local function LoadModule(path)
     end
 end
 
+-- 1. Load the core logic and sidebar
 LoadModule("ui/sidebar.lua")
 LoadModule("src/setting/uisize.lua")
-LoadModule("ui/home.lua")
+
+-- 2. Load the core UI Builder (this MUST be loaded before populating tabs)
+LoadModule("ui/home.lua") 
+
+-- 3. Load the Tab Contents
+LoadModule("ui/home/main.lua")
+LoadModule("ui/home/setting.lua")
+
+-- 4. Load other configs
 LoadModule("src/setting/transparency.lua")
 LoadModule("src/setting/config.lua")
