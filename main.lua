@@ -391,13 +391,17 @@ end
 LoadModule("ui/sidebar.lua")
 LoadModule("src/setting/uisize.lua")
 
--- 2. Load the core UI Builder (this MUST be loaded before populating tabs)
+-- 2. Load the core UI Builder 
 LoadModule("ui/home.lua") 
 
 -- 3. Load the Tab Contents
 LoadModule("ui/home/main.lua")
+LoadModule("ui/home/execute.lua")
 LoadModule("ui/home/setting.lua")
 
--- 4. Load other configs
+-- 4. Load External Scripts
+LoadModule("src/execute/Free-Gamepass.lua") 
+
+-- 5. Load other configs
 LoadModule("src/setting/transparency.lua")
 LoadModule("src/setting/config.lua")

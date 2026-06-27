@@ -1,5 +1,5 @@
 -- // ui/sidebar.lua
--- // Mengatur pembuatan Sidebar & Sistem Tabs
+-- // Manages Sidebar & Tabs System
 
 return function(Moonveil)
     local Create = Moonveil.Create
@@ -107,10 +107,10 @@ return function(Moonveil)
         return TabConfig
     end
 
-    -- // Instansiasi Hub Tabs
+    -- // Instantiate Hub Tabs
     Moonveil.CreatedTabs = {
         Main = Moonveil:CreateTab("Main", true, false),
+        Execute = Moonveil:CreateTab("Execute", false, false), -- [NEW] Menambahkan tab execute
         Settings = Moonveil:CreateTab("Settings", false, false)
-        -- Tab Premium Dihapus Sesuai Request
     }
 end
